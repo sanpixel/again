@@ -24,9 +24,9 @@ jobs:
     
     - name: Create frontend .env file
       run: |
-        echo "REACT_APP_SUPABASE_URL=${{ secrets.SUPABASE_URL }}" > frontend/.env
-        echo "REACT_APP_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> frontend/.env
-        echo "REACT_APP_SITE_URL=${{ secrets.SITE_URL }}" >> frontend/.env
+        echo "REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }}" > frontend/.env
+        echo "REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}" >> frontend/.env
+        echo "REACT_APP_SITE_URL=${{ secrets.REACT_APP_SITE_URL }}" >> frontend/.env
     
     - name: Deploy to Cloud Run
       run: |
