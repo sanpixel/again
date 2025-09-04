@@ -1,10 +1,22 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Debug: Check if frontend build exists
+const buildPath = path.join(__dirname, '../frontend/build');
+console.log('Build path:', buildPath);
+console.log('Build directory exists:', fs.existsSync(buildPath));
+if (fs.existsSync(buildPath)) {
+  const files = fs.readdirSync(buildPath);
+  console.log('Build files:', files);
+} else {
+  console.log('Build directory does not exist');
+}
 
 app.use(cors());
 app.use(express.json());
