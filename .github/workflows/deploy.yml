@@ -22,11 +22,17 @@ jobs:
     - name: Setup Google Cloud CLI
       uses: google-github-actions/setup-gcloud@v2
     
-    - name: Deploy to Cloud Run
+    - name: Create environment file
       env:
         REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
         REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
         REACT_APP_SITE_URL: ${{ secrets.REACT_APP_SITE_URL }}
+      run: |
+        echo "REACT_APP_SUPABASE_URL=${REACT_APP_SUPABASE_URL}" > frontend/.env
+        echo "REACT_APP_SUPABASE_ANON_KEY=${REACT_APP_SUPABASE_ANON_KEY}" >> frontend/.env
+        echo "REACT_APP_SITE_URL=${REACT_APP_SITE_URL}" >> frontend/.env
+    
+    - name: Deploy to Cloud Run
       run: |
         gcloud run deploy again \
           --source . \
@@ -34,6 +40,4 @@ jobs:
           --allow-unauthenticated \
           --memory 1Gi \
           --cpu 1 \
-          --max-instances 10 \
-          --set-build-env-vars REACT_APP_SUPABASE_URL="${REACT_APP_SUPABASE_URL}",REACT_APP_SUPABASE_ANON_KEY="${REACT_APP_SUPABASE_ANON_KEY}",REACT_APP_SITE_URL="${REACT_APP_SITE_URL}" \
-          --set-env-vars REACT_APP_SUPABASE_URL="${REACT_APP_SUPABASE_URL}",REACT_APP_SUPABASE_ANON_KEY="${REACT_APP_SUPABASE_ANON_KEY}",REACT_APP_SITE_URL="${REACT_APP_SITE_URL}"
+          --max-instances 10
