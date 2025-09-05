@@ -29,6 +29,31 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', service: 'again', port: PORT });
 });
 
+// Debug endpoint to check .env file content
+app.get('/api/debug/env', (req, res) => {
+  const envPath = path.join(__dirname, '../frontend/.env');
+  const exists = fs.existsSync(envPath);
+  
+  if (exists) {
+    const content = fs.readFileSync(envPath, 'utf8');
+    res.json({ 
+      exists: true, 
+      content: content,
+      lines: content.split('\n').filter(line => line.trim())
+    });
+  } else {
+    res.json({ 
+      exists: false, 
+      content: null,
+      processEnv: {
+        REACT_APP_SUPABASE_URL: process.env.REACT_APP_SUPABASE_URL || 'undefined',
+        REACT_APP_SUPABASE_ANON_KEY: process.env.REACT_APP_SUPABASE_ANON_KEY || 'undefined',
+        REACT_APP_SITE_URL: process.env.REACT_APP_SITE_URL || 'undefined'
+      }
+    });
+  }
+});
+
 // Catch-all handler: send back React's index.html file for any non-API routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));

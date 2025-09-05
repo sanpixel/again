@@ -21,6 +21,11 @@ function App() {
             <p>REACT_APP_SUPABASE_URL: {process.env.REACT_APP_SUPABASE_URL || 'NOT SET'}</p>
             <p>REACT_APP_SUPABASE_ANON_KEY: {process.env.REACT_APP_SUPABASE_ANON_KEY || 'NOT SET'}</p>
             <p>REACT_APP_SITE_URL: {process.env.REACT_APP_SITE_URL || 'NOT SET'}</p>
+            <p>
+              <a href="/api/debug/env" target="_blank" style={{color: '#61dafb'}}>
+                Check .env file content
+              </a>
+            </p>
           </div>
           <Routes>
             <Route path="/" element={<Auth />} />
