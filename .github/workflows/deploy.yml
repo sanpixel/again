@@ -40,5 +40,4 @@ jobs:
           --allow-unauthenticated \
           --memory 1Gi \
           --cpu 1 \
-          --max-instances 10 \
-          --set-env-vars="REACT_APP_SUPABASE_URL=${{ secrets.SUPABASE_URL }},REACT_APP_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }},REACT_APP_SITE_URL=${{ secrets.SITE_URL }}"
+          --max-instances 10
