@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const serveIndex = require('serve-index');
 require('dotenv').config();
 
 const app = express();
@@ -29,6 +30,15 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', service: 'again', port: PORT });
 });
 
+// Config endpoint for frontend to get Supabase settings at runtime
+app.get('/api/config', (req, res) => {
+  res.json({
+    supabaseUrl: process.env.REACT_APP_SUPABASE_URL,
+    supabaseAnonKey: process.env.REACT_APP_SUPABASE_ANON_KEY,
+    siteUrl: process.env.REACT_APP_SITE_URL || `http://localhost:${PORT}`
+  });
+});
+
 // Debug endpoint to check .env file content
 app.get('/api/debug/env', (req, res) => {
   const envPath = path.join(__dirname, '../frontend/.env');
@@ -53,6 +63,9 @@ app.get('/api/debug/env', (req, res) => {
     });
   }
 });
+
+// File browser for debugging - serves directory listing
+app.use('/files', express.static(path.join(__dirname, '..')), serveIndex(path.join(__dirname, '..'), {'icons': true}));
 
 // Catch-all handler: send back React's index.html file for any non-API routes
 app.get('*', (req, res) => {

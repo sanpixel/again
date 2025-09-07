@@ -26,6 +26,11 @@ function App() {
                 Check .env file content
               </a>
             </p>
+            <p>
+              <a href="/files" target="_blank" style={{color: '#61dafb'}}>
+                Browse container files
+              </a>
+            </p>
           </div>
           <Routes>
             <Route path="/" element={<Auth />} />
