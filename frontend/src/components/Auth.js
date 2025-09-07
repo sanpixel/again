@@ -39,11 +39,10 @@ export default function Auth() {
   }, []);
   const signInWithGoogle = async () => {
     if (!supabase) return;
-    const siteUrl = "https://again-222526998280.us-central1.run.app";
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${siteUrl}/auth/callback`
+        redirectTo: 'https://again-222526998280.us-central1.run.app/auth/callback'
       }
     });
     if (error) console.error('Error:', error);
