@@ -42,4 +42,5 @@ jobs:
           --memory 1Gi \
           --cpu 1 \
           --max-instances 10 \
-          --set-build-env-vars="REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }},REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }},REACT_APP_SITE_URL=${{ secrets.REACT_APP_SITE_URL }},SITE_URL=${{ secrets.SITE_URL }}"
+          --set-build-env-vars="REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }},REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }},REACT_APP_SITE_URL=${{ secrets.REACT_APP_SITE_URL }},SITE_URL=${{ secrets.SITE_URL }}" \
+          --set-env-vars="REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }},REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }},REACT_APP_SITE_URL=${{ secrets.REACT_APP_SITE_URL }},SITE_URL=${{ secrets.SITE_URL }}"

@@ -39,7 +39,7 @@ export default function Auth() {
   }, []);
   const signInWithGoogle = async () => {
     if (!supabase) return;
-    const siteUrl = config?.deployUrl || config?.siteUrl || window.location.origin;
+    const siteUrl = config?.deployUrl;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -84,6 +84,7 @@ export default function Auth() {
         Sign in with Google
       </button>
       {!config && <p style={{color: 'red', fontSize: '12px'}}>Config not loaded</p>}
+      {config && <p style={{color: 'green', fontSize: '10px'}}>deployUrl: {config.deployUrl || 'NOT SET'}</p>}
       <p>
         <a
           className="App-link"
