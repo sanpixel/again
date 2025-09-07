@@ -39,7 +39,7 @@ export default function Auth() {
   }, []);
   const signInWithGoogle = async () => {
     if (!supabase) return;
-    const siteUrl = config?.deployUrl;
+    const siteUrl = "https://again-222526998280.us-central1.run.app";
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
