@@ -37,10 +37,9 @@ export default function Auth() {
     
     setupAuth();
   }, []);
-
   const signInWithGoogle = async () => {
     if (!supabase) return;
-    const siteUrl = config?.siteUrl || window.location.origin;
+    const siteUrl = config?.deployUrl || config?.siteUrl || window.location.origin;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {

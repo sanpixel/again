@@ -35,7 +35,8 @@ app.get('/api/config', (req, res) => {
   res.json({
     supabaseUrl: process.env.REACT_APP_SUPABASE_URL,
     supabaseAnonKey: process.env.REACT_APP_SUPABASE_ANON_KEY,
-    siteUrl: process.env.REACT_APP_SITE_URL || `http://localhost:${PORT}`
+    siteUrl: process.env.REACT_APP_SITE_URL || `http://localhost:${PORT}`,
+    deployUrl: process.env.SITE_URL
   });
 });
 
